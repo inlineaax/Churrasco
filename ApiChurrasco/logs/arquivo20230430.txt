@@ -1,0 +1,771 @@
+2023-04-30 17:00:02.070 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 17:00:02.299 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 17:00:02.300 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 17:00:02.304 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 17:00:02.305 -03:00 [INF] Hosting environment: Development
+2023-04-30 17:00:02.306 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 17:00:02.607 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 17:00:02.923 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 17:00:02.927 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 324.0949ms
+2023-04-30 17:00:02.927 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 4.1405ms
+2023-04-30 17:00:02.935 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 17:00:02.947 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 12.2326ms
+2023-04-30 17:00:03.013 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 17:00:03.098 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 84.8128ms
+2023-04-30 17:00:12.009 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/Login application/json 53
+2023-04-30 17:00:12.058 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 17:00:12.078 -03:00 [INF] Route matched with {action = "FazerLogin", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult FazerLogin(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 17:00:15.297 -03:00 [INF] Executed DbCommand (247ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 17:00:15.455 -03:00 [INF] Executing OkObjectResult, writing value of type 'Application.Models.Usuario.RetornaMensagemLogin'.
+2023-04-30 17:00:15.471 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco) in 3387.7373ms
+2023-04-30 17:00:15.472 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 17:00:15.485 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/Login application/json 53 - 200 - application/json;+charset=utf-8 3476.4685ms
+2023-04-30 17:00:37.506 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/api/Churrasco/BuscarDetalhesChurrasco?idChurrasco=111 - -
+2023-04-30 17:00:37.561 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco)'
+2023-04-30 17:00:37.563 -03:00 [INF] Route matched with {action = "BuscarDetalhesChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult BuscarDetalhesChurrasco(Int32) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 17:00:37.569 -03:00 [INF] Rastreio - Entrou no Get - BuscarDetalhesChurrasco
+2023-04-30 17:00:38.017 -03:00 [INF] Executed DbCommand (282ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id_churrasco, t.data, t.descricao, t.valor_sugerido_com_bebida, t.valor_sugerido_sem_bebida, p.id_participante, p.id_churrasco, p."Nome", p.valor_pago
+FROM (
+    SELECT c.id_churrasco, c.data, c.descricao, c.valor_sugerido_com_bebida, c.valor_sugerido_sem_bebida
+    FROM churrasco AS c
+    WHERE c.id_churrasco = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN participante AS p ON t.id_churrasco = p.id_churrasco
+ORDER BY t.id_churrasco
+2023-04-30 17:01:31.013 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco) in 53448.4913ms
+2023-04-30 17:01:31.014 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco)'
+2023-04-30 17:01:31.018 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: O Churrasco com o Id 111 não encontrado
+   at Infra.Repositories.ChurrascoRepository.ObterDetalhesChurrasco(Int32 id) in C:\Users\InLine\source\repos\Churrasco\Infra\Repositories\ChurrascoRepository.cs:line 61
+   at Application.Services.ChurrascoService.BuscarDetalhesChurrasco(Int32 idChurrasco) in C:\Users\InLine\source\repos\Churrasco\Application\Services\ChurrascoService.cs:line 91
+   at ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco(Int32 idChurrasco) in C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\Controllers\ChurrascoController.cs:line 84
+   at lambda_method28(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-04-30 17:01:31.074 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/api/Churrasco/BuscarDetalhesChurrasco?idChurrasco=111 - - - 500 - text/plain;+charset=utf-8 53567.9343ms
+2023-04-30 17:01:42.912 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/api/Churrasco/BuscarDetalhesChurrasco?idChurrasco=111 - -
+2023-04-30 17:01:42.915 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco)'
+2023-04-30 17:01:42.916 -03:00 [INF] Route matched with {action = "BuscarDetalhesChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult BuscarDetalhesChurrasco(Int32) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 17:01:42.918 -03:00 [INF] Rastreio - Entrou no Get - BuscarDetalhesChurrasco
+2023-04-30 17:01:43.245 -03:00 [INF] Executed DbCommand (294ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id_churrasco, t.data, t.descricao, t.valor_sugerido_com_bebida, t.valor_sugerido_sem_bebida, p.id_participante, p.id_churrasco, p."Nome", p.valor_pago
+FROM (
+    SELECT c.id_churrasco, c.data, c.descricao, c.valor_sugerido_com_bebida, c.valor_sugerido_sem_bebida
+    FROM churrasco AS c
+    WHERE c.id_churrasco = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN participante AS p ON t.id_churrasco = p.id_churrasco
+ORDER BY t.id_churrasco
+2023-04-30 17:03:42.663 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 17:03:42.902 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 17:03:42.903 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 17:03:42.907 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 17:03:42.908 -03:00 [INF] Hosting environment: Development
+2023-04-30 17:03:42.909 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 17:03:43.389 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 17:03:43.720 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 333.2617ms
+2023-04-30 17:03:43.727 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 17:03:43.731 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 4.1002ms
+2023-04-30 17:03:43.737 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 17:03:43.749 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 12.7074ms
+2023-04-30 17:03:43.813 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 17:03:43.915 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 101.6225ms
+2023-04-30 17:03:52.404 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/Login application/json 53
+2023-04-30 17:03:52.457 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 17:03:52.477 -03:00 [INF] Route matched with {action = "FazerLogin", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult FazerLogin(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 17:03:55.867 -03:00 [INF] Executed DbCommand (280ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 17:03:56.030 -03:00 [INF] Executing OkObjectResult, writing value of type 'Application.Models.Usuario.RetornaMensagemLogin'.
+2023-04-30 17:03:56.046 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco) in 3563.6889ms
+2023-04-30 17:03:56.047 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 17:03:56.059 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/Login application/json 53 - 200 - application/json;+charset=utf-8 3655.1911ms
+2023-04-30 17:04:10.774 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/api/Churrasco/BuscarDetalhesChurrasco?idChurrasco=111 - -
+2023-04-30 17:04:10.829 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco)'
+2023-04-30 17:04:10.831 -03:00 [INF] Route matched with {action = "BuscarDetalhesChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult BuscarDetalhesChurrasco(Int32) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 17:04:10.836 -03:00 [INF] Rastreio - Entrou no Get - BuscarDetalhesChurrasco
+2023-04-30 17:04:11.212 -03:00 [INF] Executed DbCommand (258ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id_churrasco, t.data, t.descricao, t.valor_sugerido_com_bebida, t.valor_sugerido_sem_bebida, p.id_participante, p.id_churrasco, p."Nome", p.valor_pago
+FROM (
+    SELECT c.id_churrasco, c.data, c.descricao, c.valor_sugerido_com_bebida, c.valor_sugerido_sem_bebida
+    FROM churrasco AS c
+    WHERE c.id_churrasco = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN participante AS p ON t.id_churrasco = p.id_churrasco
+ORDER BY t.id_churrasco
+2023-04-30 17:05:47.160 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 17:05:47.322 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 17:05:47.323 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 17:05:47.326 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 17:05:47.327 -03:00 [INF] Hosting environment: Development
+2023-04-30 17:05:47.328 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 17:05:47.868 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 17:05:48.227 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 17:05:48.231 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 366.7893ms
+2023-04-30 17:05:48.231 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 4.4653ms
+2023-04-30 17:05:48.241 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 17:05:48.255 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 14.0494ms
+2023-04-30 17:05:48.319 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 17:05:48.416 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 97.3560ms
+2023-04-30 17:05:57.947 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/Login application/json 53
+2023-04-30 17:05:58.003 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 17:05:58.023 -03:00 [INF] Route matched with {action = "FazerLogin", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult FazerLogin(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 17:06:01.611 -03:00 [INF] Executed DbCommand (280ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 17:06:01.774 -03:00 [INF] Executing OkObjectResult, writing value of type 'Application.Models.Usuario.RetornaMensagemLogin'.
+2023-04-30 17:06:01.792 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco) in 3763.8981ms
+2023-04-30 17:06:01.794 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 17:06:01.811 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/Login application/json 53 - 200 - application/json;+charset=utf-8 3864.3087ms
+2023-04-30 17:06:25.612 -03:00 [INF] Request starting HTTP/2 DELETE https://localhost:7157/api/Participante/RemoverParticipante?idParticipante=11111&idChurrasco=2 - -
+2023-04-30 17:06:25.679 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ParticipanteController.RemoverParticipante (ApiChurrasco)'
+2023-04-30 17:06:25.681 -03:00 [INF] Route matched with {action = "RemoverParticipante", controller = "Participante"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RemoverParticipante(Int32, Int32) on controller ApiChurrasco.Controllers.ParticipanteController (ApiChurrasco).
+2023-04-30 17:06:25.969 -03:00 [INF] Executed DbCommand (276ms) [Parameters=[@__idParticipante_0='?' (DbType = Int32), @__idChurrasco_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id_participante, p.id_churrasco, p."Nome", p.valor_pago
+FROM participante AS p
+WHERE p.id_participante = @__idParticipante_0 AND p.id_churrasco = @__idChurrasco_1
+LIMIT 2
+2023-04-30 17:06:26.013 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 17:06:26.014 -03:00 [INF] Executed action ApiChurrasco.Controllers.ParticipanteController.RemoverParticipante (ApiChurrasco) in 332.2724ms
+2023-04-30 17:06:26.015 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ParticipanteController.RemoverParticipante (ApiChurrasco)'
+2023-04-30 17:06:26.016 -03:00 [INF] Request finished HTTP/2 DELETE https://localhost:7157/api/Participante/RemoverParticipante?idParticipante=11111&idChurrasco=2 - - - 400 - text/plain;+charset=utf-8 403.2297ms
+2023-04-30 17:07:38.717 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/api/Churrasco/BuscarDetalhesChurrasco?idChurrasco=11111 - -
+2023-04-30 17:07:38.727 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco)'
+2023-04-30 17:07:38.729 -03:00 [INF] Route matched with {action = "BuscarDetalhesChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult BuscarDetalhesChurrasco(Int32) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 17:07:38.731 -03:00 [INF] Rastreio - Entrou no Get - BuscarDetalhesChurrasco
+2023-04-30 17:07:39.184 -03:00 [INF] Executed DbCommand (310ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id_churrasco, t.data, t.descricao, t.valor_sugerido_com_bebida, t.valor_sugerido_sem_bebida, p.id_participante, p.id_churrasco, p."Nome", p.valor_pago
+FROM (
+    SELECT c.id_churrasco, c.data, c.descricao, c.valor_sugerido_com_bebida, c.valor_sugerido_sem_bebida
+    FROM churrasco AS c
+    WHERE c.id_churrasco = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN participante AS p ON t.id_churrasco = p.id_churrasco
+ORDER BY t.id_churrasco
+2023-04-30 17:09:39.187 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 17:09:39.435 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 17:09:39.436 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 17:09:39.439 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 17:09:39.440 -03:00 [INF] Hosting environment: Development
+2023-04-30 17:09:39.441 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 17:09:39.812 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 17:09:40.125 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 314.7654ms
+2023-04-30 17:09:40.131 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 17:09:40.136 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 4.3094ms
+2023-04-30 17:09:40.140 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 17:09:40.156 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 15.4549ms
+2023-04-30 17:09:40.219 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 17:09:40.303 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 84.1734ms
+2023-04-30 17:09:47.640 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/Login application/json 53
+2023-04-30 17:09:47.691 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 17:09:47.711 -03:00 [INF] Route matched with {action = "FazerLogin", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult FazerLogin(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 17:09:51.155 -03:00 [INF] Executed DbCommand (248ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 17:09:51.313 -03:00 [INF] Executing OkObjectResult, writing value of type 'Application.Models.Usuario.RetornaMensagemLogin'.
+2023-04-30 17:09:51.328 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco) in 3611.9642ms
+2023-04-30 17:09:51.330 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 17:09:51.341 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/Login application/json 53 - 200 - application/json;+charset=utf-8 3701.4677ms
+2023-04-30 17:10:09.611 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/api/Churrasco/BuscarDetalhesChurrasco?idChurrasco=111 - -
+2023-04-30 17:10:09.668 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco)'
+2023-04-30 17:10:09.670 -03:00 [INF] Route matched with {action = "BuscarDetalhesChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult BuscarDetalhesChurrasco(Int32) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 17:10:24.812 -03:00 [INF] Rastreio - Entrou no Get - BuscarDetalhesChurrasco
+2023-04-30 17:10:35.634 -03:00 [INF] Executed DbCommand (234ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id_churrasco, t.data, t.descricao, t.valor_sugerido_com_bebida, t.valor_sugerido_sem_bebida, p.id_participante, p.id_churrasco, p."Nome", p.valor_pago
+FROM (
+    SELECT c.id_churrasco, c.data, c.descricao, c.valor_sugerido_com_bebida, c.valor_sugerido_sem_bebida
+    FROM churrasco AS c
+    WHERE c.id_churrasco = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN participante AS p ON t.id_churrasco = p.id_churrasco
+ORDER BY t.id_churrasco
+2023-04-30 17:11:00.102 -03:00 [ERR] O Churrasco com o Id 111 não encontrado
+2023-04-30 17:11:02.191 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 17:11:02.192 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco) in 52521.6182ms
+2023-04-30 17:11:02.193 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco)'
+2023-04-30 17:11:02.194 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/api/Churrasco/BuscarDetalhesChurrasco?idChurrasco=111 - - - 400 - text/plain;+charset=utf-8 52582.9034ms
+2023-04-30 17:11:19.295 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/api/Churrasco/BuscarDetalhesChurrasco?idChurrasco=23 - -
+2023-04-30 17:11:19.299 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco)'
+2023-04-30 17:11:19.300 -03:00 [INF] Route matched with {action = "BuscarDetalhesChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult BuscarDetalhesChurrasco(Int32) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 17:11:19.302 -03:00 [INF] Rastreio - Entrou no Get - BuscarDetalhesChurrasco
+2023-04-30 17:11:19.647 -03:00 [INF] Executed DbCommand (313ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id_churrasco, t.data, t.descricao, t.valor_sugerido_com_bebida, t.valor_sugerido_sem_bebida, p.id_participante, p.id_churrasco, p."Nome", p.valor_pago
+FROM (
+    SELECT c.id_churrasco, c.data, c.descricao, c.valor_sugerido_com_bebida, c.valor_sugerido_sem_bebida
+    FROM churrasco AS c
+    WHERE c.id_churrasco = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN participante AS p ON t.id_churrasco = p.id_churrasco
+ORDER BY t.id_churrasco
+2023-04-30 17:11:19.660 -03:00 [ERR] O Churrasco com o Id 23 não encontrado
+2023-04-30 17:11:19.661 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 17:11:19.662 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco) in 360.357ms
+2023-04-30 17:11:19.664 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.BuscarDetalhesChurrasco (ApiChurrasco)'
+2023-04-30 17:11:19.665 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/api/Churrasco/BuscarDetalhesChurrasco?idChurrasco=23 - - - 400 - text/plain;+charset=utf-8 370.2348ms
+2023-04-30 17:13:54.712 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 17:13:54.796 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 17:13:54.797 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 17:13:54.799 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 17:13:54.799 -03:00 [INF] Hosting environment: Development
+2023-04-30 17:13:54.800 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 17:13:55.131 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 17:13:55.286 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 156.5153ms
+2023-04-30 17:13:55.290 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 17:13:55.292 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 1.8853ms
+2023-04-30 17:13:55.299 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 17:13:55.306 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 7.5646ms
+2023-04-30 17:13:55.368 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 17:13:55.419 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 51.1547ms
+2023-04-30 17:19:52.676 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 17:19:52.904 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 17:19:52.905 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 17:19:52.909 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 17:19:52.909 -03:00 [INF] Hosting environment: Development
+2023-04-30 17:19:52.910 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 17:19:53.286 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 17:19:53.614 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 17:19:53.618 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 333.5504ms
+2023-04-30 17:19:53.618 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 3.9599ms
+2023-04-30 17:19:53.626 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 17:19:53.639 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 13.0907ms
+2023-04-30 17:19:53.701 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 17:19:53.783 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 82.0821ms
+2023-04-30 17:20:03.582 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 44
+2023-04-30 17:20:03.634 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:20:03.653 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 17:20:03.824 -03:00 [INF] Rastreio - Entrou no Post - CadastrarUsuario
+2023-04-30 17:20:03.850 -03:00 [ERR] The specified string is not in the form required for an e-mail address.
+2023-04-30 17:20:03.856 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 17:20:03.861 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 203.0948ms
+2023-04-30 17:20:03.865 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:20:03.868 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 44 - 400 - text/plain;+charset=utf-8 285.4925ms
+2023-04-30 17:20:23.686 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 49
+2023-04-30 17:20:23.689 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:20:23.694 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 17:20:23.702 -03:00 [ERR] Campos inválidos, ERRO
+2023-04-30 17:20:23.702 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 17:20:23.703 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 7.613ms
+2023-04-30 17:20:23.704 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:20:23.704 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 49 - 400 - text/plain;+charset=utf-8 18.4241ms
+2023-04-30 17:20:56.849 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 50
+2023-04-30 17:20:56.853 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:20:56.854 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 17:20:56.856 -03:00 [INF] Rastreio - Entrou no Post - CadastrarUsuario
+2023-04-30 17:21:02.120 -03:00 [INF] Executed DbCommand (234ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 17:21:02.194 -03:00 [ERR] Usuário já cadastrado
+2023-04-30 17:21:02.195 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 17:21:02.196 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 5340.7721ms
+2023-04-30 17:21:02.197 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:21:02.209 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 50 - 400 - text/plain;+charset=utf-8 5360.3602ms
+2023-04-30 17:22:08.859 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 47
+2023-04-30 17:22:08.867 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:22:08.868 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 17:22:08.869 -03:00 [ERR] Campos inválidos, ERRO
+2023-04-30 17:22:08.870 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 17:22:08.871 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 1.5675ms
+2023-04-30 17:22:08.871 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:22:08.872 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 47 - 400 - text/plain;+charset=utf-8 12.9735ms
+2023-04-30 17:22:13.669 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 50
+2023-04-30 17:22:13.670 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:22:13.670 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 17:22:13.672 -03:00 [INF] Rastreio - Entrou no Post - CadastrarUsuario
+2023-04-30 17:22:13.979 -03:00 [INF] Executed DbCommand (290ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 17:22:13.992 -03:00 [ERR] Usuário já cadastrado
+2023-04-30 17:22:13.992 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 17:22:13.993 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 321.5682ms
+2023-04-30 17:22:13.994 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:22:13.995 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 50 - 400 - text/plain;+charset=utf-8 326.1157ms
+2023-04-30 17:24:02.830 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 50
+2023-04-30 17:24:02.837 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:24:02.840 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 17:24:02.841 -03:00 [INF] Rastreio - Entrou no Post - CadastrarUsuario
+2023-04-30 17:24:03.136 -03:00 [INF] Executed DbCommand (265ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 17:24:03.149 -03:00 [ERR] Usuário já cadastrado
+2023-04-30 17:24:03.149 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 17:24:03.150 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 309.3724ms
+2023-04-30 17:24:03.151 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:24:03.152 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 50 - 400 - text/plain;+charset=utf-8 321.5879ms
+2023-04-30 17:24:17.037 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 17:24:17.233 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 17:24:17.234 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 17:24:17.237 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 17:24:17.238 -03:00 [INF] Hosting environment: Development
+2023-04-30 17:24:17.239 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 17:24:17.670 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 17:24:17.954 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 17:24:17.957 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 289.0548ms
+2023-04-30 17:24:17.957 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 3.8601ms
+2023-04-30 17:24:17.967 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 17:24:17.981 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 14.3836ms
+2023-04-30 17:24:18.043 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 17:24:18.126 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 83.1274ms
+2023-04-30 17:24:34.960 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 53
+2023-04-30 17:24:35.015 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:24:35.035 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 17:24:35.209 -03:00 [INF] Rastreio - Entrou no Post - CadastrarUsuario
+2023-04-30 17:24:38.437 -03:00 [INF] Executed DbCommand (239ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 17:24:38.527 -03:00 [ERR] Usuário já cadastrado
+2023-04-30 17:24:38.534 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 17:24:38.540 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 3498.942ms
+2023-04-30 17:24:38.541 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 17:24:38.553 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/CadastrarUsuario application/json 53 - 400 - text/plain;+charset=utf-8 3593.9271ms
+2023-04-30 20:06:21.417 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 20:06:21.609 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 20:06:21.610 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 20:06:21.613 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 20:06:21.614 -03:00 [INF] Hosting environment: Development
+2023-04-30 20:06:21.614 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 20:06:22.565 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 20:06:23.010 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 448.2971ms
+2023-04-30 20:06:23.013 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 20:06:23.032 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 18.7150ms
+2023-04-30 20:06:23.050 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 20:06:23.078 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 27.6934ms
+2023-04-30 20:06:23.142 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 20:06:23.220 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 78.3219ms
+2023-04-30 20:09:13.059 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 20:09:13.249 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 20:09:13.250 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 20:09:13.254 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 20:09:13.255 -03:00 [INF] Hosting environment: Development
+2023-04-30 20:09:13.256 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 20:09:13.897 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 20:09:14.181 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 286.5464ms
+2023-04-30 20:09:14.189 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 20:09:14.193 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 3.5038ms
+2023-04-30 20:09:14.201 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 20:09:14.215 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 14.2385ms
+2023-04-30 20:09:14.278 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 20:09:14.354 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 75.8725ms
+2023-04-30 20:14:05.345 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 20:14:05.523 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 20:14:05.524 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 20:14:05.527 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 20:14:05.528 -03:00 [INF] Hosting environment: Development
+2023-04-30 20:14:05.529 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 20:14:06.227 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 20:14:06.508 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 20:14:06.509 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 284.7037ms
+2023-04-30 20:14:06.516 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 7.2729ms
+2023-04-30 20:14:06.523 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 20:14:06.535 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 11.7185ms
+2023-04-30 20:14:06.593 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 20:14:06.671 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 78.3612ms
+2023-04-30 20:42:54.041 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 20:42:54.252 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 20:42:54.252 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 20:42:54.256 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 20:42:54.257 -03:00 [INF] Hosting environment: Development
+2023-04-30 20:42:54.257 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 20:42:54.949 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 20:42:55.276 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 20:42:55.281 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 334.6997ms
+2023-04-30 20:42:55.281 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 4.5392ms
+2023-04-30 20:42:55.290 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 20:42:55.305 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 14.8402ms
+2023-04-30 20:42:55.370 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 20:42:55.450 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 79.2738ms
+2023-04-30 21:03:29.897 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 21:03:30.055 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 21:03:30.055 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 21:03:30.059 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 21:03:30.059 -03:00 [INF] Hosting environment: Development
+2023-04-30 21:03:30.060 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 21:03:31.522 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 21:03:31.882 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 362.8290ms
+2023-04-30 21:03:31.888 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 21:03:31.892 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 4.1914ms
+2023-04-30 21:03:31.900 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 21:03:31.914 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 14.4373ms
+2023-04-30 21:03:31.976 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 21:03:32.054 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 78.4296ms
+2023-04-30 21:04:45.981 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 21:04:46.142 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 21:04:46.143 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 21:04:46.146 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 21:04:46.147 -03:00 [INF] Hosting environment: Development
+2023-04-30 21:04:46.147 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 21:04:47.137 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 21:04:47.504 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 21:04:47.508 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 374.8024ms
+2023-04-30 21:04:47.511 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 5.7597ms
+2023-04-30 21:04:47.522 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 21:04:47.538 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 15.8138ms
+2023-04-30 21:04:47.605 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 21:04:47.710 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 105.1994ms
+2023-04-30 21:08:13.985 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 21:08:14.145 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 21:08:14.145 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 21:08:14.149 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 21:08:14.149 -03:00 [INF] Hosting environment: Development
+2023-04-30 21:08:14.150 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 21:08:16.054 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 21:08:16.394 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 21:08:16.397 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 345.6264ms
+2023-04-30 21:08:16.409 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 14.4095ms
+2023-04-30 21:08:16.416 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 21:08:16.439 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 22.8444ms
+2023-04-30 21:08:16.508 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 21:08:16.586 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 78.9428ms
+2023-04-30 21:08:25.195 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/login application/json 53
+2023-04-30 21:08:25.246 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 21:08:25.266 -03:00 [INF] Route matched with {action = "FazerLogin", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult FazerLogin(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 21:08:25.436 -03:00 [INF] Rastreio - Entrou no Post - Login
+2023-04-30 21:08:28.208 -03:00 [INF] Executed DbCommand (234ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 21:08:28.369 -03:00 [INF] Executing OkObjectResult, writing value of type 'Application.Models.Usuario.RetornaMensagemLogin'.
+2023-04-30 21:08:28.385 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco) in 3114.2013ms
+2023-04-30 21:08:28.386 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 21:08:28.398 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/login application/json 53 - 200 - application/json;+charset=utf-8 3202.9778ms
+2023-04-30 21:09:00.228 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Churrasco application/json 111
+2023-04-30 21:09:00.288 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 21:09:00.290 -03:00 [INF] Route matched with {action = "CadastrarChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarChurrasco(Application.Models.Churrasco.DadosChurrasco) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 21:09:00.310 -03:00 [INF] Rastreio - Entrou no Post - CadastrarChurrasco
+2023-04-30 21:09:00.340 -03:00 [ERR] A data do churrasco não pode ser anterior à data atual
+2023-04-30 21:09:00.341 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 21:09:00.342 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco) in 50.92ms
+2023-04-30 21:09:00.343 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 21:09:00.344 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Churrasco application/json 111 - 400 - text/plain;+charset=utf-8 115.8851ms
+2023-04-30 21:09:15.683 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Churrasco application/json 105
+2023-04-30 21:09:15.685 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 21:09:15.686 -03:00 [INF] Route matched with {action = "CadastrarChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarChurrasco(Application.Models.Churrasco.DadosChurrasco) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 21:09:15.688 -03:00 [INF] Rastreio - Entrou no Post - CadastrarChurrasco
+2023-04-30 21:09:15.700 -03:00 [ERR] A descrição do churrasco é obrigatória
+2023-04-30 21:09:15.701 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 21:09:15.702 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco) in 14.2263ms
+2023-04-30 21:09:15.702 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 21:09:15.703 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Churrasco application/json 105 - 400 - text/plain;+charset=utf-8 20.4360ms
+2023-04-30 21:09:21.596 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Churrasco application/json 108
+2023-04-30 21:09:21.598 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 21:09:21.598 -03:00 [INF] Route matched with {action = "CadastrarChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarChurrasco(Application.Models.Churrasco.DadosChurrasco) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 21:09:21.600 -03:00 [INF] Rastreio - Entrou no Post - CadastrarChurrasco
+2023-04-30 21:09:21.613 -03:00 [ERR] O valor sugerido do churrasco deve ser maior que zero
+2023-04-30 21:09:21.613 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 21:09:21.614 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco) in 14.4109ms
+2023-04-30 21:09:21.615 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 21:09:21.616 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Churrasco application/json 108 - 400 - text/plain;+charset=utf-8 19.3213ms
+2023-04-30 23:00:01.826 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 23:00:01.914 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 23:00:01.914 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 23:00:01.917 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 23:00:01.917 -03:00 [INF] Hosting environment: Development
+2023-04-30 23:00:01.918 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 23:00:02.268 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 23:00:02.428 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 162.0154ms
+2023-04-30 23:00:02.430 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 23:00:02.432 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 2.0565ms
+2023-04-30 23:00:02.449 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 23:00:02.459 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 9.2441ms
+2023-04-30 23:00:02.533 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 23:00:02.584 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 50.5123ms
+2023-04-30 23:40:49.066 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 23:40:49.225 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 23:40:49.226 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 23:40:49.229 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 23:40:49.230 -03:00 [INF] Hosting environment: Development
+2023-04-30 23:40:49.230 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 23:40:51.152 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 23:40:51.434 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 23:40:51.438 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 288.3785ms
+2023-04-30 23:40:51.438 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 3.7556ms
+2023-04-30 23:40:51.450 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 23:40:51.464 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 14.0397ms
+2023-04-30 23:40:51.524 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 23:40:51.622 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 97.7288ms
+2023-04-30 23:49:41.033 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 23:49:41.191 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 23:49:41.191 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 23:49:41.194 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 23:49:41.195 -03:00 [INF] Hosting environment: Development
+2023-04-30 23:49:41.195 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 23:49:42.820 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 23:49:43.168 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 23:49:43.173 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 3.8455ms
+2023-04-30 23:49:43.173 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 355.6822ms
+2023-04-30 23:49:43.184 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 23:49:43.199 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 14.9595ms
+2023-04-30 23:49:43.283 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 23:49:43.390 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 106.8008ms
+2023-04-30 23:49:51.352 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/login application/json 44
+2023-04-30 23:49:51.409 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 23:49:51.429 -03:00 [INF] Route matched with {action = "FazerLogin", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult FazerLogin(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 23:49:51.602 -03:00 [INF] Rastreio - Entrou no Post - Login
+2023-04-30 23:49:54.413 -03:00 [INF] Executed DbCommand (231ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 23:49:54.467 -03:00 [ERR] Usuário não encontrado
+2023-04-30 23:49:54.474 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:49:54.479 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco) in 3045.2548ms
+2023-04-30 23:49:54.481 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 23:49:54.493 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/login application/json 44 - 400 - text/plain;+charset=utf-8 3140.5541ms
+2023-04-30 23:50:12.256 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 44
+2023-04-30 23:50:12.259 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:50:12.261 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 23:50:12.269 -03:00 [INF] Rastreio - Entrou no Post - CadastrarUsuario
+2023-04-30 23:50:12.285 -03:00 [ERR] The specified string is not in the form required for an e-mail address.
+2023-04-30 23:50:12.286 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:50:12.287 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 24.3621ms
+2023-04-30 23:50:12.288 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:50:12.288 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 44 - 400 - text/plain;+charset=utf-8 31.9491ms
+2023-04-30 23:51:00.566 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 23:51:00.743 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 23:51:00.744 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 23:51:00.747 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 23:51:00.748 -03:00 [INF] Hosting environment: Development
+2023-04-30 23:51:00.748 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 23:51:02.594 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 23:51:02.872 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 280.3049ms
+2023-04-30 23:51:02.878 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 23:51:02.881 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 3.4532ms
+2023-04-30 23:51:02.887 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 23:51:02.901 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 13.7130ms
+2023-04-30 23:51:02.958 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 23:51:03.050 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 91.0808ms
+2023-04-30 23:51:10.050 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 44
+2023-04-30 23:51:10.114 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:51:10.135 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 23:51:10.320 -03:00 [INF] Rastreio - Entrou no Post - CadastrarUsuario
+2023-04-30 23:51:10.346 -03:00 [ERR] The specified string is not in the form required for an e-mail address.
+2023-04-30 23:51:10.353 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:51:10.358 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 217.8784ms
+2023-04-30 23:51:10.361 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:51:10.364 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 44 - 400 - text/plain;+charset=utf-8 314.2366ms
+2023-04-30 23:51:18.716 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 38
+2023-04-30 23:51:18.718 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:51:18.719 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 23:51:18.727 -03:00 [ERR] Campos inválidos, ERRO
+2023-04-30 23:51:18.728 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:51:18.728 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 7.9862ms
+2023-04-30 23:51:18.729 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:51:18.730 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 38 - 400 - text/plain;+charset=utf-8 14.4602ms
+2023-04-30 23:51:22.916 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 32
+2023-04-30 23:51:22.918 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:51:22.919 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 23:51:22.921 -03:00 [ERR] Campos inválidos, ERRO
+2023-04-30 23:51:22.921 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:51:22.922 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 1.8924ms
+2023-04-30 23:51:22.923 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:51:22.923 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 32 - 400 - text/plain;+charset=utf-8 7.5974ms
+2023-04-30 23:51:44.145 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 50
+2023-04-30 23:51:44.154 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:51:44.155 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 23:51:44.156 -03:00 [INF] Rastreio - Entrou no Post - CadastrarUsuario
+2023-04-30 23:51:46.870 -03:00 [INF] Executed DbCommand (233ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 23:51:46.948 -03:00 [ERR] Usuário já cadastrado
+2023-04-30 23:51:46.949 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:51:46.950 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 2793.4367ms
+2023-04-30 23:51:46.950 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:51:46.963 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 50 - 400 - text/plain;+charset=utf-8 2818.3431ms
+2023-04-30 23:52:09.710 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 38
+2023-04-30 23:52:09.711 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:52:09.712 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 23:52:09.713 -03:00 [INF] Rastreio - Entrou no Post - CadastrarUsuario
+2023-04-30 23:52:09.727 -03:00 [ERR] The specified string is not in the form required for an e-mail address.
+2023-04-30 23:52:09.728 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:52:09.729 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 15.8171ms
+2023-04-30 23:52:09.730 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:52:09.730 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 38 - 400 - text/plain;+charset=utf-8 20.2741ms
+2023-04-30 23:52:18.012 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 46
+2023-04-30 23:52:18.013 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:52:18.014 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 23:52:18.015 -03:00 [INF] Rastreio - Entrou no Post - CadastrarUsuario
+2023-04-30 23:52:18.029 -03:00 [ERR] The specified string is not in the form required for an e-mail address.
+2023-04-30 23:52:18.029 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:52:18.030 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 15.4195ms
+2023-04-30 23:52:18.031 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:52:18.032 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 46 - 400 - text/plain;+charset=utf-8 19.5333ms
+2023-04-30 23:57:00.884 -03:00 [INF] User profile is available. Using 'C:\Users\InLine\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-04-30 23:57:01.042 -03:00 [INF] Now listening on: https://localhost:7157
+2023-04-30 23:57:01.042 -03:00 [INF] Now listening on: http://localhost:5269
+2023-04-30 23:57:01.045 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-30 23:57:01.046 -03:00 [INF] Hosting environment: Development
+2023-04-30 23:57:01.047 -03:00 [INF] Content root path: C:\Users\InLine\source\repos\Churrasco\ApiChurrasco\
+2023-04-30 23:57:02.135 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/index.html - -
+2023-04-30 23:57:02.444 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/index.html - - - 200 - text/html;charset=utf-8 311.2262ms
+2023-04-30 23:57:02.450 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - -
+2023-04-30 23:57:02.454 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 4.0469ms
+2023-04-30 23:57:02.460 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/_vs/browserLink - -
+2023-04-30 23:57:02.474 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 13.7206ms
+2023-04-30 23:57:02.535 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - -
+2023-04-30 23:57:02.620 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7157/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 84.6371ms
+2023-04-30 23:57:10.425 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 44
+2023-04-30 23:57:10.475 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:57:10.495 -03:00 [INF] Route matched with {action = "CadastrarUsuario", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarUsuario(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 23:57:10.669 -03:00 [INF] Rastreio - Entrou no Post - CadastrarUsuario
+2023-04-30 23:57:10.694 -03:00 [ERR] Email inválido, ERRO
+2023-04-30 23:57:10.701 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:57:10.706 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco) in 206.0405ms
+2023-04-30 23:57:10.710 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.CadastrarUsuario (ApiChurrasco)'
+2023-04-30 23:57:10.712 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/cadastrar application/json 44 - 400 - text/plain;+charset=utf-8 287.7882ms
+2023-04-30 23:57:20.120 -03:00 [INF] Request starting HTTP/2 DELETE https://localhost:7157/api/Participante - -
+2023-04-30 23:57:20.126 -03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2023-04-30 23:57:20.132 -03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2023-04-30 23:57:20.133 -03:00 [INF] Request finished HTTP/2 DELETE https://localhost:7157/api/Participante - - - 401 0 - 13.0956ms
+2023-04-30 23:57:35.882 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Usuario/login application/json 53
+2023-04-30 23:57:35.884 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 23:57:35.885 -03:00 [INF] Route matched with {action = "FazerLogin", controller = "Usuario"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult FazerLogin(Application.Models.Usuario.DadosLogin) on controller ApiChurrasco.Controllers.UsuarioController (ApiChurrasco).
+2023-04-30 23:57:35.893 -03:00 [INF] Rastreio - Entrou no Post - Login
+2023-04-30 23:57:38.610 -03:00 [INF] Executed DbCommand (236ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id_usuario, u.email, u.senha
+FROM usuario AS u
+WHERE u.email = @__email_0
+LIMIT 1
+2023-04-30 23:57:38.766 -03:00 [INF] Executing OkObjectResult, writing value of type 'Application.Models.Usuario.RetornaMensagemLogin'.
+2023-04-30 23:57:38.778 -03:00 [INF] Executed action ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco) in 2891.9575ms
+2023-04-30 23:57:38.779 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.UsuarioController.FazerLogin (ApiChurrasco)'
+2023-04-30 23:57:38.793 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Usuario/login application/json 53 - 200 - application/json;+charset=utf-8 2910.8401ms
+2023-04-30 23:58:00.882 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Churrasco application/json 111
+2023-04-30 23:58:00.939 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:00.941 -03:00 [INF] Route matched with {action = "CadastrarChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarChurrasco(Application.Models.Churrasco.DadosChurrasco) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 23:58:00.960 -03:00 [INF] Rastreio - Entrou no Post - CadastrarChurrasco
+2023-04-30 23:58:00.974 -03:00 [ERR] A data do churrasco não pode ser anterior à data atual
+2023-04-30 23:58:00.974 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:58:00.975 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco) in 33.4906ms
+2023-04-30 23:58:00.976 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:00.977 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Churrasco application/json 111 - 400 - text/plain;+charset=utf-8 95.0482ms
+2023-04-30 23:58:14.182 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Churrasco application/json 105
+2023-04-30 23:58:14.184 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:14.185 -03:00 [INF] Route matched with {action = "CadastrarChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarChurrasco(Application.Models.Churrasco.DadosChurrasco) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 23:58:14.187 -03:00 [INF] Rastreio - Entrou no Post - CadastrarChurrasco
+2023-04-30 23:58:14.200 -03:00 [ERR] A descrição do churrasco é obrigatória
+2023-04-30 23:58:14.201 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:58:14.202 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco) in 15.5014ms
+2023-04-30 23:58:14.202 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:14.203 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Churrasco application/json 105 - 400 - text/plain;+charset=utf-8 21.3880ms
+2023-04-30 23:58:23.395 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Churrasco application/json 121
+2023-04-30 23:58:23.396 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:23.397 -03:00 [INF] Route matched with {action = "CadastrarChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarChurrasco(Application.Models.Churrasco.DadosChurrasco) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 23:58:23.399 -03:00 [INF] Rastreio - Entrou no Post - CadastrarChurrasco
+2023-04-30 23:58:23.411 -03:00 [ERR] O valor sugerido do churrasco deve ser maior que zero
+2023-04-30 23:58:23.412 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:58:23.413 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco) in 14.7154ms
+2023-04-30 23:58:23.413 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:23.414 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Churrasco application/json 121 - 400 - text/plain;+charset=utf-8 18.7630ms
+2023-04-30 23:58:29.396 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Churrasco application/json 122
+2023-04-30 23:58:29.397 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:29.397 -03:00 [INF] Route matched with {action = "CadastrarChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarChurrasco(Application.Models.Churrasco.DadosChurrasco) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 23:58:29.399 -03:00 [INF] Rastreio - Entrou no Post - CadastrarChurrasco
+2023-04-30 23:58:29.411 -03:00 [ERR] O valor sugerido do churrasco deve ser maior que zero
+2023-04-30 23:58:29.412 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:58:29.413 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco) in 14.3319ms
+2023-04-30 23:58:29.414 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:29.414 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Churrasco application/json 122 - 400 - text/plain;+charset=utf-8 18.5784ms
+2023-04-30 23:58:35.658 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Churrasco application/json 124
+2023-04-30 23:58:35.659 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:35.660 -03:00 [INF] Route matched with {action = "CadastrarChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarChurrasco(Application.Models.Churrasco.DadosChurrasco) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 23:58:35.661 -03:00 [INF] Rastreio - Entrou no Post - CadastrarChurrasco
+2023-04-30 23:58:35.673 -03:00 [ERR] O valor sugerido do churrasco deve ser maior que zero
+2023-04-30 23:58:35.674 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:58:35.674 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco) in 13.4783ms
+2023-04-30 23:58:35.675 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:35.676 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Churrasco application/json 124 - 400 - text/plain;+charset=utf-8 17.5888ms
+2023-04-30 23:58:52.767 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7157/api/Churrasco application/json 123
+2023-04-30 23:58:52.768 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:52.769 -03:00 [INF] Route matched with {action = "CadastrarChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult CadastrarChurrasco(Application.Models.Churrasco.DadosChurrasco) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 23:58:52.770 -03:00 [INF] Rastreio - Entrou no Post - CadastrarChurrasco
+2023-04-30 23:58:53.089 -03:00 [INF] Executed DbCommand (201ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO churrasco (data, descricao, valor_sugerido_com_bebida, valor_sugerido_sem_bebida)
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING id_churrasco;
+2023-04-30 23:58:53.113 -03:00 [INF] Executing OkObjectResult, writing value of type 'Application.Models.Churrasco.RespostaChurrasco'.
+2023-04-30 23:58:53.114 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco) in 344.0943ms
+2023-04-30 23:58:53.115 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.CadastrarChurrasco (ApiChurrasco)'
+2023-04-30 23:58:53.116 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7157/api/Churrasco application/json 123 - 200 - application/json;+charset=utf-8 348.7011ms
+2023-04-30 23:59:04.272 -03:00 [INF] Request starting HTTP/2 DELETE https://localhost:7157/api/Churrasco?id=24324 - -
+2023-04-30 23:59:04.273 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.RemoverChurrasco (ApiChurrasco)'
+2023-04-30 23:59:04.275 -03:00 [INF] Route matched with {action = "RemoverChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult RemoverChurrasco(Int32) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 23:59:04.281 -03:00 [INF] Rastreio - Entrou no Delete - RemoverChurrasco
+2023-04-30 23:59:04.615 -03:00 [INF] Executed DbCommand (190ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id_churrasco, t.data, t.descricao, t.valor_sugerido_com_bebida, t.valor_sugerido_sem_bebida, p.id_participante, p.id_churrasco, p."Nome", p.valor_pago
+FROM (
+    SELECT c.id_churrasco, c.data, c.descricao, c.valor_sugerido_com_bebida, c.valor_sugerido_sem_bebida
+    FROM churrasco AS c
+    WHERE c.id_churrasco = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN participante AS p ON t.id_churrasco = p.id_churrasco
+ORDER BY t.id_churrasco
+2023-04-30 23:59:04.630 -03:00 [ERR] O Churrasco com o Id 24324 não encontrado
+2023-04-30 23:59:04.631 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:59:04.632 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.RemoverChurrasco (ApiChurrasco) in 355.6146ms
+2023-04-30 23:59:04.633 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.RemoverChurrasco (ApiChurrasco)'
+2023-04-30 23:59:04.634 -03:00 [INF] Request finished HTTP/2 DELETE https://localhost:7157/api/Churrasco?id=24324 - - - 400 - text/plain;+charset=utf-8 361.7862ms
+2023-04-30 23:59:54.197 -03:00 [INF] Request starting HTTP/2 DELETE https://localhost:7157/api/Churrasco?id=24324 - -
+2023-04-30 23:59:54.200 -03:00 [INF] Executing endpoint 'ApiChurrasco.Controllers.ChurrascoController.RemoverChurrasco (ApiChurrasco)'
+2023-04-30 23:59:54.201 -03:00 [INF] Route matched with {action = "RemoverChurrasco", controller = "Churrasco"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult RemoverChurrasco(Int32) on controller ApiChurrasco.Controllers.ChurrascoController (ApiChurrasco).
+2023-04-30 23:59:54.203 -03:00 [INF] Rastreio - Entrou no Delete - RemoverChurrasco
+2023-04-30 23:59:54.392 -03:00 [INF] Executed DbCommand (187ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id_churrasco, t.data, t.descricao, t.valor_sugerido_com_bebida, t.valor_sugerido_sem_bebida, p.id_participante, p.id_churrasco, p."Nome", p.valor_pago
+FROM (
+    SELECT c.id_churrasco, c.data, c.descricao, c.valor_sugerido_com_bebida, c.valor_sugerido_sem_bebida
+    FROM churrasco AS c
+    WHERE c.id_churrasco = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN participante AS p ON t.id_churrasco = p.id_churrasco
+ORDER BY t.id_churrasco
+2023-04-30 23:59:54.406 -03:00 [ERR] O Churrasco com o Id 24324 não encontrado
+2023-04-30 23:59:54.407 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2023-04-30 23:59:54.407 -03:00 [INF] Executed action ApiChurrasco.Controllers.ChurrascoController.RemoverChurrasco (ApiChurrasco) in 205.0322ms
+2023-04-30 23:59:54.408 -03:00 [INF] Executed endpoint 'ApiChurrasco.Controllers.ChurrascoController.RemoverChurrasco (ApiChurrasco)'
+2023-04-30 23:59:54.409 -03:00 [INF] Request finished HTTP/2 DELETE https://localhost:7157/api/Churrasco?id=24324 - - - 400 - text/plain;+charset=utf-8 212.0459ms
