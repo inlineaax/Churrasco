@@ -15,7 +15,7 @@ Projeto Backend de gerenciamento de Churrasco que contém:
 + . C#
 + . .NET 6
 + . EntityFramework
-+ . PostgreSQL
++ . PostgreSQL (RailWay)
 + . Swagger
 + . xUnit
 
@@ -33,6 +33,7 @@ Projeto Backend de gerenciamento de Churrasco que contém:
 Projeto seguindo padrão DDD, princípios SOLID, boas práticas e legibilidade.
 Utilização de Serilog para gravar logs de erros e informações de acesso.
 Foram feitos testes unitários com xUnit, utilizando moq, padrão AAA e Fluent Assertions.
+Banco de dados PostgreSQL na nuvem com RailWay.
 
 ---
 ⌨️ por - [Thiago Borges Valadão](https://www.linkedin.com/in/thiagoborgesv/)
